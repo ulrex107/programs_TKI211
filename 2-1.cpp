@@ -1,17 +1,28 @@
 #include <iostream>
+#include <algorithm>
+
 using namespace std;
 
 /**
 * \brief перемена местами переменных с использованием 3ей переменной
 * \param c - переменная-буфер
 */
-void swap1(int a, int b);
+void swapping_with_third_variable(double value1, double value2);
 
 /**
 * \brief пермена местами переменных без использования 3ей переменной
 *
 */
-void swap(int a, int b);
+void swap_without_third_variable(double value1, double value2);
+
+/**
+* \brief выбор заполнения массива
+*/
+enum path
+{
+	first = 1,
+	second = 2
+};
 
 /**
 * \brief Точка входа в программу.
@@ -21,57 +32,44 @@ void swap(int a, int b);
 * \return Код ошибки (0 - успех).
 */
 
-/**
-* \brief выбор заполнения массива
-*/
-enum path
-{
-Manuall = 1,
-Random = 2
-};
-
 int main()
 {
-setlocale(LC_ALL, "Russian");
+	setlocale(LC_ALL, "Russian");
 
-int a, b, choice;
-cout « "Введите а - ";
-cin » a;
-cout « "Введите b - ";
-cin » b;
-cout « "Выберите как хотите заполнить массив:\n1 - ввод с клавиатуры\n2 - заполнение массива случайными числами\nВыбор: ";
-int choice;
-cin » choice;
-const auto filling = static_cast<path>(choice);
-switch (filling) {
-case path::Random:
-{
-swap(a, b);
-}
-case path::Manuall:
-{
-swap1(a, b);
-}
-default:
-cout « "Некоректный ввод.";
-}
-}
-
-void swap1(int a, int b)
-{
-int c;
-c = a;
-a = b;
-b = c;
-cout « "Значение а после перестановки - " « a « '\n';
-cout « "Значение b после перестановки - " « b « '\n';
+	int value1, value2, choice;
+	cout << "Введите а и b ";
+	cin >> value1 >> value2;
+	cout << "Выберите как хотите поменять цифры:\n1 - с с помощью третьей переменной\n2 - без третьей переменной\n";
+	cin >> choice;
+	const auto filling = static_cast<path>(choice);
+	switch (filling) {
+	case path::first:
+	{
+		swapping_with_third_variable(value1, value2);
+		break;
+	}
+	case path::second:
+	{
+		swap_without_third_variable( value1,  value2);
+		break;
+	}
+	default:
+		cout << "Некоректный ввод.";
+		break;
+	}
 }
 
-void swap(int a, int b)
+void swapping_with_third_variable(double value1, double value2)
 {
-a = a + b;
-b = a - b;
-a = a - b;
-cout « "Значение а после перестановки - " « a « '\n';
-cout « "Значение b после перестановки - " « b « '\n';
+	swap(value1,value2);
+	cout << "Значение а после перестановки - " << value1 << '\n'<< "Значение b после перестановки - " << value2 << '\n';
+	
+}
+
+
+void swap_without_third_variable(double value1, double value2){
+	value1 = value1 + value2;
+	value2 = value1 - value2;
+	value1 = value1 - value2;
+	cout << "Значение а после перестановки - " << value1 << '\n'<< "Значение b после перестановки - " << value2 << '\n';
 }

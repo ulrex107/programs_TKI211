@@ -4,10 +4,10 @@
 using namespace std;
 /**
 * \brief вычисление функции по заданной формуле
-* \param a - константа
+* \param x - константа
 * \return результат
 */
-void solution();
+double solution (double x);
 
 
 /**
@@ -16,32 +16,32 @@ void solution();
 * \return Код ошибки (0-успех)
 */
 
+
 int main()
 {
-setlocale(LC_ALL, "Russian");
-std::cout « "Введите x = ";
-int x;
-cin » x;
+	setlocale(LC_ALL, "Russian");
+	cout << "Введите x = ";
+	double x;
+	cin >> x;
 
-solution();
+	double rezylt = solution(x);
+	cout << rezylt;
 
-return 0;
+	return 0;
 }
 
 
-int solution(int x) //функция поиска решений
+double solution(double x) //функция поиска решений
 {
-int y;
-const int a = 2.5;
-if (x > a)
-{
-y = (x * (pow(sin(x), 2)));
-std::cout « "Значение y равно " « y « endl;
-}
-else
-{
-y = (x * (pow(cos(x), 2)));
-std::cout « "Значение y равно " « y « endl;
-}
-return y;
+	double y;
+	const double a = 2.5;
+	if (x > a)
+	{
+		y = ( x * ( pow( sin( x ) , 2) ) );
+	}
+	else
+	{
+		y = ( x * ( pow ( cos ( x ) , 2) ) );
+	}
+	return y;
 }
