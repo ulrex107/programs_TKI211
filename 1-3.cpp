@@ -8,7 +8,7 @@ using namespace std;
 * \param s - площадь
 * \param g - ускорение свободного падения
 */
-void pressure(double s, double m, double const g);
+double pressure(const double s, const double m);
 
 
 
@@ -23,18 +23,19 @@ int main()
 {
 setlocale(LC_ALL, "Russian");
 
-std::cout « "Введите S - ";
+cout << "Введите S - ";
 double s;
-std::cin » s;
-std::cout « "Введите m - ";
+cin >> s;
+cout << "Введите m - ";
 double m;
-std::cin » m;;
+cin >> m;;
 
-pressure(s, m);
+double rezult = pressure(s, m);
+cout << rezult;
 }
 
-void pressure(double s, double m)
+double pressure(const double s, const double m)
 {
 double const g = 9.8;
-std::cout « "Давление равно - " « (m * g) / s « endl;
+return (m * g) / s;
 }
