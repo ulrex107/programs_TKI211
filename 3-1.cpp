@@ -1,38 +1,53 @@
 #include <iostream>
 #include <cmath>
+#include <iomanip>
+
 
 using namespace std;
 
-/**
-*\brief Функция для расчета y
-*\param x Параметр x
-*\return Значение функции
-*/
-double GetY(double x);
 
 /**
-*\brief точка входа в программу
-*\return Код ошибки(0 - успех)
-*/
+ * \brief Возможность расчета функции в точке.
+ * \param x Входной параметр - точка x.
+ * \return true, если функция определена в заданной точке x.
+ */
+bool IsCalculated(const double x);
+
+/**
+ * \brief Расчет функции в точке x.
+ * \param x Входной параметр - точка x.
+ * \return Значение функции в точке x
+ */
+double Calculation(const double x);
+
+/**
+ * \brief Точка входа в программу.
+ * \return Код ошибки (0 - успех).
+ */
 int main()
 {
-setlocale(LC_ALL, "Russian");
+    const auto leftBound = -1.0;
+    const auto rightBound = 1.0;
+    const auto step = 0.1;
 
-const int LOW_BOUND = 0;
-const int UP_BOUND = 1;
-const double step = 0.1;
-double x = LOW_BOUND;
-
-cout « fixed;
-if (x < 0)
-for (x; x < 0; x+=step)
-cout « "x: " « x « "| y: Невозможно посчитать значение функции в данной точке\n";
-for (x; x <= UP_BOUND; x += step)
-cout « "x: " « x « " | y: " « GetY(x) « '\n';
-return 0;
+    for (auto x = leftBound; x <= rightBound; x += step)
+    {
+        if (IsCalculated(x))
+        {
+            const auto y = Calculation(x);
+            cout << x  <<" "<< y << '\n';
+        }
+        cout  << x << " not defined \n";
+    }
+    return 0;
 }
 
-double GetY(const double x)
+double Calculation(const double x)
 {
-return 3 * x - 4 * log(x) - 5;
+    return (3 * x - 4 * log(x) - 5);
+}
+
+bool IsCalculated(const double x)
+{
+    return x >= numeric_limits<double>::min();
 }
